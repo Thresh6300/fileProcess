@@ -31,11 +31,11 @@ public class MinioClientUtils {
         try {
             if (!getMinioClient(minioClientConfig).bucketExists(suffix)) {
                 getMinioClient(minioClientConfig).makeBucket(suffix);
-                // 开始上传文件
-                InputStream inputStream = file.getInputStream();
-                getMinioClient(minioClientConfig).putObject(suffix,filePath,inputStream,inputStream.available(),file.getContentType());
-                flag = true;
             }
+            // 开始上传文件
+            InputStream inputStream = file.getInputStream();
+            getMinioClient(minioClientConfig).putObject(suffix,filePath,inputStream,inputStream.available(),file.getContentType());
+            flag = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
