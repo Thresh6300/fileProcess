@@ -42,6 +42,20 @@ public class MinioClientUtils {
         return flag;
     }
 
+    public static Boolean fileDownload(MinioClientConfig minioClientConfig,String bucketName,String filePath,String fileName) {
+        boolean flag = false;
+        minioClient = getMinioClient(minioClientConfig);
+        try {
+            minioClient.getObject(bucketName,fileName,filePath);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+
     public static MinioClient getMinioClient(MinioClientConfig clientConfig) {
         if (minioClient == null) {
             try {

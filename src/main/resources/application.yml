@@ -2,6 +2,7 @@ server:
   port: 8080
 
 spring :
+  ## 设置传输文件最大容量，防止上传文件因为容量太大导致上传失败
   servlet:
     multipart:
       maxFileSize: 2000MB

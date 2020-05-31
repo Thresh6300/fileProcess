@@ -46,9 +46,20 @@ public class FileProcessServiceImpl implements FileProcessService {
                 .append("/").append(fileName).append(".").append(prefix).toString();
         flag = MinioClientUtils.fileUpload(file,filePath,prefix,minioClientConfig);
         if (flag){
-            return fileName;
+            return filePath;
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean fileDown(String fileName, String filePatch) {
+        boolean flag = false;
+        // 首先我们要知道我们要下载的文件在文件服务器上所在桶的位置(路径)
+        // 我们是哪文件的后缀作为桶名，因此获取文件后缀
+        int index= fileName.indexOf(".")+1;
+        String bucketName = fileName.substring(index);
+        flag = MinioClientUtils.fileDownload(minioClientConfig,bucketName,filePatch,fileName);
+        return flag;
     }
 }

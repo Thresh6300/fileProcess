@@ -9,5 +9,15 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface FileProcessService {
 
+    /**
+     * 文件上传
+     * @param file
+     * @return
+     */
     public String fileUpload(MultipartFile file);
+
+    /**
+     * 文件下载
+     */
+    public boolean fileDown(String fileName,String filePatch);
 }
